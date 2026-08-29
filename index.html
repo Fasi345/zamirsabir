@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Zamir Shabir Mobile Phone and Computer Trading - Premium mobile phones and accessories in Bur Dubai." />
+  <title>Zamir Shabir Mobile Phone and Computer Trading | Bur Dubai</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#080808;
+      --bg-2:#101010;
+      --card:#141414;
+      --gold:#d6ad60;
+      --gold-light:#f0d38c;
+      --text:#f7f4ec;
+      --muted:#aaa59b;
+      --line:rgba(214,173,96,.18);
+      --white:#fff;
+      --shadow:0 30px 70px rgba(0,0,0,.35);
+    }
+
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:"Manrope",sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      overflow-x:hidden;
+    }
+
+    a{text-decoration:none;color:inherit}
+    img{display:block;max-width:100%}
+    button{font:inherit}
+
+    .container{
+      width:min(1180px,calc(100% - 40px));
+      margin:auto;
+    }
+
+    .topbar{
+      padding:10px 0;
+      background:#050505;
+      border-bottom:1px solid var(--line);
+      color:#c9c4b8;
+      font-size:12px;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      text-align:center;
+    }
+
+    .navbar{
+      position:absolute;
+      top:35px;
+      left:0;
+      width:100%;
+      z-index:30;
+      transition:.3s ease;
+    }
+
+    .nav-inner{
+      min-height:84px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:25px;
+    }
+
+    .logo{
+      display:flex;
+      align-items:center;
+      gap:13px;
+    }
+
+    .logo-mark{
+      width:46px;
+      height:46px;
+      border:1px solid rgba(214,173,96,.7);
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      color:var(--gold-light);
+      font-family:"Playfair Display",serif;
+      font-size:22px;
+      font-weight:700;
+      background:rgba(0,0,0,.32);
+      backdrop-filter:blur(10px);
+    }
+
+    .logo-text strong{
+      display:block;
+      font-family:"Playfair Display",serif;
+      font-size:20px;
+      letter-spacing:.03em;
+    }
+
+    .logo-text span{
+      display:block;
+      color:#d0c8b7;
+      font-size:10px;
+      letter-spacing:.23em;
+      text-transform:uppercase;
+      margin-top:2px;
+    }
+
+    nav{
+      display:flex;
+      align-items:center;
+      gap:30px;
+    }
+
+    nav a{
+      color:#eee8dc;
+      font-size:13px;
+      font-weight:600;
+      transition:.2s ease;
+    }
+
+    nav a:hover{color:var(--gold-light)}
+
+    .nav-cta,.primary-btn,.outline-btn{
+      display:inline-flex;
+      justify-content:center;
+      align-items:center;
+      gap:9px;
+      min-height:48px;
+      padding:0 22px;
+      border-radius:999px;
+      font-size:13px;
+      font-weight:800;
+      transition:.25s ease;
+      cursor:pointer;
+    }
+
+    .nav-cta,.primary-btn{
+      background:linear-gradient(135deg,var(--gold-light),var(--gold));
+      color:#111;
+      box-shadow:0 12px 35px rgba(214,173,96,.18);
+    }
+
+    .nav-cta:hover,.primary-btn:hover{
+      transform:translateY(-2px);
+      filter:brightness(1.06);
+    }
+
+    .outline-btn{
+      border:1px solid rgba(255,255,255,.35);
+      background:rgba(0,0,0,.2);
+      color:#fff;
+      backdrop-filter:blur(8px);
+    }
+
+    .outline-btn:hover{
+      border-color:var(--gold);
+      color:var(--gold-light);
+    }
+
+    .menu-btn{
+      display:none;
+      width:44px;height:44px;
+      border-radius:50%;
+      border:1px solid rgba(255,255,255,.2);
+      background:rgba(0,0,0,.28);
+      color:#fff;
+      cursor:pointer;
+      font-size:20px;
+    }
+
+    /* HERO SLIDER */
+    .hero{
+      min-height:760px;
+      position:relative;
+      display:flex;
+      align-items:center;
+      overflow:hidden;
+      background:#050505;
+    }
+
+    .slide{
+      position:absolute;
+      inset:0;
+      opacity:0;
+      visibility:hidden;
+      transform:scale(1.04);
+      transition:opacity .9s ease,visibility .9s ease,transform 5s ease;
+      background-size:cover;
+      background-position:center;
+    }
+
+    .slide.active{
+      opacity:1;
+      visibility:visible;
+      transform:scale(1);
+    }
+
+    /* Replace these image filenames with your own images */
+    .slide-1{background-image:url('images/slide-1.jpg')}
+    .slide-2{background-image:url('images/slide-2.jpg')}
+    .slide-3{background-image:url('images/slide-3.jpg')}
+
+    .hero-overlay{
+      position:absolute;
+      inset:0;
+      z-index:2;
+      background:
+        linear-gradient(90deg,rgba(0,0,0,.86) 0%,rgba(0,0,0,.61) 42%,rgba(0,0,0,.23) 70%,rgba(0,0,0,.42) 100%),
+        linear-gradient(0deg,rgba(8,8,8,.88) 0%,transparent 35%);
+    }
+
+    .hero-content{
+      position:relative;
+      z-index:4;
+      width:min(760px,75%);
+      padding-top:80px;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      color:var(--gold-light);
+      text-transform:uppercase;
+      letter-spacing:.21em;
+      font-size:11px;
+      font-weight:800;
+      margin-bottom:22px;
+    }
+
+    .eyebrow:before{
+      content:"";
+      width:34px;
+      height:1px;
+      background:var(--gold);
+    }
+
+    h1{
+      font-family:"Playfair Display",serif;
+      font-size:clamp(53px,7.1vw,98px);
+      line-height:.94;
+      letter-spacing:-.045em;
+      max-width:850px;
+      margin-bottom:24px;
+    }
+
+    h1 span{
+      color:var(--gold-light);
+      font-style:italic;
+    }
+
+    .hero p{
+      color:#d5d0c7;
+      font-size:17px;
+      line-height:1.8;
+      max-width:600px;
+      margin-bottom:32px;
+    }
+
+    .hero-actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .hero-meta{
+      position:absolute;
+      bottom:38px;
+      z-index:5;
+      width:100%;
+    }
+
+    .hero-meta-inner{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-end;
+      gap:20px;
+    }
+
+    .trust-row{
+      display:flex;
+      gap:28px;
+    }
+
+    .trust-item strong{
+      display:block;
+      color:#fff;
+      font-size:20px;
+    }
+
+    .trust-item span{
+      display:block;
+      color:#9f9a91;
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      margin-top:2px;
+    }
+
+    .dots{
+      display:flex;
+      gap:9px;
+      align-items:center;
+    }
+
+    .dot{
+      width:8px;
+      height:8px;
+      border-radius:999px;
+      border:0;
+      background:rgba(255,255,255,.4);
+      cursor:pointer;
+      transition:.25s ease;
+    }
+
+    .dot.active{
+      width:32px;
+      background:var(--gold-light);
+    }
+
+    section{padding:110px 0}
+
+    .section-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:end;
+      gap:25px;
+      margin-bottom:45px;
+    }
+
+    .section-title{
+      max-width:650px;
+    }
+
+    .section-title small{
+      color:var(--gold);
+      text-transform:uppercase;
+      letter-spacing:.2em;
+      font-size:11px;
+      font-weight:800;
+    }
+
+    .section-title h2{
+      font-family:"Playfair Display",serif;
+      font-size:clamp(37px,4vw,57px);
+      line-height:1.04;
+      margin-top:10px;
+    }
+
+    .section-head p{
+      color:var(--muted);
+      max-width:430px;
+      line-height:1.75;
+      font-size:14px;
+    }
+
+    /* PRODUCTS */
+    .products{
+      background:
+        radial-gradient(circle at 90% 10%,rgba(214,173,96,.08),transparent 28%),
+        var(--bg);
+    }
+
+    .product-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:18px;
+    }
+
+    .product-card{
+      background:linear-gradient(180deg,#171717,#101010);
+      border:1px solid rgba(255,255,255,.07);
+      border-radius:22px;
+      overflow:hidden;
+      transition:.3s ease;
+    }
+
+    .product-card:hover{
+      transform:translateY(-7px);
+      border-color:rgba(214,173,96,.45);
+      box-shadow:var(--shadow);
+    }
+
+    .product-image{
+      height:280px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:28px;
+      background:
+        radial-gradient(circle at center,rgba(214,173,96,.11),transparent 54%),
+        #111;
+      overflow:hidden;
+    }
+
+    .product-image img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      transition:.4s ease;
+    }
+
+    .product-card:hover .product-image img{
+      transform:scale(1.04);
+    }
+
+    .product-info{padding:22px}
+
+    .tag{
+      display:inline-block;
+      color:var(--gold-light);
+      font-size:10px;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.14em;
+      margin-bottom:9px;
+    }
+
+    .product-info h3{
+      font-size:18px;
+      margin-bottom:7px;
+    }
+
+    .product-info p{
+      color:#918d86;
+      font-size:12px;
+      line-height:1.6;
+      min-height:39px;
+    }
+
+    .price-row{
+      display:flex;
+      align-items:end;
+      justify-content:space-between;
+      gap:10px;
+      border-top:1px solid rgba(255,255,255,.07);
+      margin-top:18px;
+      padding-top:17px;
+    }
+
+    .price small{
+      display:block;
+      color:#858078;
+      font-size:9px;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      margin-bottom:3px;
+    }
+
+    .price strong{
+      color:#fff;
+      font-size:18px;
+    }
+
+    .mini-link{
+      color:var(--gold-light);
+      font-size:12px;
+      font-weight:800;
+    }
+
+    /* FEATURES */
+    .why{
+      background:#0c0c0c;
+      border-top:1px solid rgba(255,255,255,.05);
+      border-bottom:1px solid rgba(255,255,255,.05);
+    }
+
+    .feature-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:24px;
+      overflow:hidden;
+    }
+
+    .feature{
+      padding:34px 28px;
+      border-right:1px solid rgba(255,255,255,.08);
+      background:linear-gradient(180deg,rgba(255,255,255,.025),transparent);
+    }
+
+    .feature:last-child{border-right:0}
+
+    .feature-icon{
+      color:var(--gold-light);
+      font-size:27px;
+      margin-bottom:22px;
+    }
+
+    .feature h3{
+      font-family:"Playfair Display",serif;
+      font-size:22px;
+      margin-bottom:9px;
+    }
+
+    .feature p{
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.7;
+    }
+
+    /* BRANDS */
+    .brand-strip{
+      display:grid;
+      grid-template-columns:repeat(5,1fr);
+      gap:12px;
+    }
+
+    .brand{
+      height:96px;
+      display:grid;
+      place-items:center;
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:18px;
+      color:#d4cfc5;
+      font-weight:800;
+      letter-spacing:.06em;
+      background:#101010;
+      transition:.25s ease;
+    }
+
+    .brand:hover{
+      color:var(--gold-light);
+      border-color:rgba(214,173,96,.4);
+    }
+
+    /* LOCATION */
+    .location{
+      padding-top:20px;
+    }
+
+    .location-card{
+      min-height:430px;
+      border-radius:28px;
+      overflow:hidden;
+      position:relative;
+      background:
+        linear-gradient(90deg,rgba(0,0,0,.95),rgba(0,0,0,.58)),
+        url('images/store.jpg') center/cover;
+      border:1px solid rgba(214,173,96,.17);
+      display:flex;
+      align-items:center;
+      padding:65px;
+    }
+
+    .location-content{
+      width:min(580px,100%);
+      position:relative;
+      z-index:2;
+    }
+
+    .location-content h2{
+      font-family:"Playfair Display",serif;
+      font-size:clamp(40px,5vw,65px);
+      line-height:1;
+      margin:10px 0 18px;
+    }
+
+    .location-content p{
+      color:#c2bdb4;
+      line-height:1.8;
+      margin-bottom:27px;
+      max-width:510px;
+    }
+
+    footer{
+      padding:55px 0 28px;
+      border-top:1px solid rgba(255,255,255,.07);
+    }
+
+    .footer-grid{
+      display:grid;
+      grid-template-columns:1.4fr .7fr .7fr;
+      gap:50px;
+      padding-bottom:42px;
+    }
+
+    .footer-about p{
+      color:var(--muted);
+      line-height:1.8;
+      font-size:13px;
+      max-width:420px;
+      margin-top:18px;
+    }
+
+    .footer-col h4{
+      color:var(--gold-light);
+      text-transform:uppercase;
+      letter-spacing:.14em;
+      font-size:11px;
+      margin-bottom:17px;
+    }
+
+    .footer-col a{
+      display:block;
+      color:#aaa69e;
+      font-size:13px;
+      margin:10px 0;
+    }
+
+    .footer-bottom{
+      padding-top:22px;
+      border-top:1px solid rgba(255,255,255,.07);
+      color:#76736d;
+      font-size:11px;
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+    }
+
+    .whatsapp-float{
+      position:fixed;
+      width:58px;height:58px;
+      right:22px;bottom:22px;
+      z-index:50;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      background:#25D366;
+      color:#fff;
+      font-weight:800;
+      box-shadow:0 15px 35px rgba(0,0,0,.35);
+      transition:.25s ease;
+    }
+
+    .whatsapp-float:hover{transform:scale(1.08)}
+
+    @media(max-width:980px){
+      nav{
+        position:absolute;
+        left:20px;
+        right:20px;
+        top:82px;
+        display:none;
+        flex-direction:column;
+        align-items:stretch;
+        background:rgba(10,10,10,.97);
+        border:1px solid rgba(255,255,255,.1);
+        border-radius:20px;
+        padding:22px;
+        backdrop-filter:blur(15px);
+      }
+
+      nav.open{display:flex}
+      .menu-btn{display:block}
+      .desktop-cta{display:none}
+      .hero-content{width:90%}
+      .product-grid{grid-template-columns:repeat(2,1fr)}
+      .feature-grid{grid-template-columns:repeat(2,1fr)}
+      .feature:nth-child(2){border-right:0}
+      .feature:nth-child(-n+2){border-bottom:1px solid rgba(255,255,255,.08)}
+      .brand-strip{grid-template-columns:repeat(3,1fr)}
+    }
+
+    @media(max-width:680px){
+      .container{width:min(100% - 26px,1180px)}
+      .navbar{top:35px}
+      .logo-text strong{font-size:17px}
+      .logo-mark{width:42px;height:42px}
+      .hero{min-height:720px}
+      .hero-content{width:100%;padding-top:85px}
+      h1{font-size:clamp(50px,15vw,72px)}
+      .hero p{font-size:15px}
+      .hero-meta-inner{align-items:flex-end}
+      .trust-row{gap:15px}
+      .trust-item:nth-child(3){display:none}
+      .trust-item strong{font-size:16px}
+      .trust-item span{font-size:8px}
+      section{padding:82px 0}
+      .section-head{display:block}
+      .section-head p{margin-top:18px}
+      .product-grid{grid-template-columns:1fr}
+      .product-image{height:320px}
+      .feature-grid{grid-template-columns:1fr}
+      .feature{border-right:0;border-bottom:1px solid rgba(255,255,255,.08)}
+      .feature:last-child{border-bottom:0}
+      .brand-strip{grid-template-columns:repeat(2,1fr)}
+      .location-card{padding:42px 27px;min-height:470px}
+      .footer-grid{grid-template-columns:1fr;gap:30px}
+      .footer-bottom{display:block;line-height:1.8}
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="topbar">Premium Smartphones • Accessories • Bur Dubai</div>
+
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a class="logo" href="#home">
+        <div class="logo-mark">ZS</div>
+        <div class="logo-text">
+          <strong>Zamir Shabir Mobile Phone and Computer Trading</strong>
+          <span>Bur Dubai</span>
+        </div>
+      </a>
+
+      <nav id="mainNav">
+        <a href="#home">Home</a>
+        <a href="#products">Mobiles</a>
+        <a href="#brands">Brands</a>
+        <a href="#about">Why Us</a>
+        <a href="#location">Location</a>
+      </nav>
+
+      <!-- CHANGE YOUR WHATSAPP NUMBER BELOW -->
+      <a class="nav-cta desktop-cta" href="https://wa.me/971500000000" target="_blank">WhatsApp Us</a>
+
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+
+      <!--
+        HERO SLIDES:
+        Put your images inside a folder called "images".
+        Use these filenames:
+        slide-1.jpg
+        slide-2.jpg
+        slide-3.jpg
+
+        Or change the image paths in the CSS near .slide-1, .slide-2, .slide-3
+      -->
+      <div class="slide slide-1 active"></div>
+      <div class="slide slide-2"></div>
+      <div class="slide slide-3"></div>
+      <div class="hero-overlay"></div>
+
+      <div class="container hero-content">
+        <div class="eyebrow">Premium Mobile Store in Bur Dubai</div>
+        <h1>Technology, <span>Elevated.</span></h1>
+        <p>
+          Explore premium smartphones, flagship devices and essential accessories
+          at Zamir Shabir Mobile Phone and Computer Trading — serving customers in the heart of Bur Dubai.
+        </p>
+
+        <div class="hero-actions">
+          <a class="primary-btn" href="#products">Explore Mobiles →</a>
+          <!-- CHANGE YOUR WHATSAPP NUMBER -->
+          <a class="outline-btn" href="https://wa.me/971500000000" target="_blank">Ask on WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="hero-meta">
+        <div class="container hero-meta-inner">
+          <div class="trust-row">
+            <div class="trust-item">
+              <strong>100%</strong>
+              <span>Quality Products</span>
+            </div>
+            <div class="trust-item">
+              <strong>Dubai</strong>
+              <span>Local Store</span>
+            </div>
+            <div class="trust-item">
+              <strong>Top</strong>
+              <span>Mobile Brands</span>
+            </div>
+          </div>
+
+          <div class="dots">
+            <button class="dot active" data-slide="0" aria-label="Slide 1"></button>
+            <button class="dot" data-slide="1" aria-label="Slide 2"></button>
+            <button class="dot" data-slide="2" aria-label="Slide 3"></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="products" id="products">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-title">
+            <small>Latest Collection</small>
+            <h2>Featured Smartphones</h2>
+          </div>
+          <p>
+            Add your latest models and prices here. Each product can link directly
+            to your WhatsApp so customers can inquire instantly.
+          </p>
+        </div>
+
+        <div class="product-grid">
+
+          <!-- PRODUCT 1 -->
+          <article class="product-card">
+            <div class="product-image">
+              <img src="images/iphone-16-pro-max.png" alt="iPhone 16 Pro Max">
+            </div>
+            <div class="product-info">
+              <span class="tag">Apple</span>
+              <h3>iPhone 16 Pro Max</h3>
+              <p>Premium titanium design, flagship camera and powerful performance.</p>
+              <div class="price-row">
+                <div class="price">
+                  <small>Starting from</small>
+                  <strong>AED 4,299</strong>
+                </div>
+                <a class="mini-link" href="https://wa.me/971500000000" target="_blank">Enquire →</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- PRODUCT 2 -->
+          <article class="product-card">
+            <div class="product-image">
+              <img src="images/iphone-16-pro.png" alt="iPhone 16 Pro">
+            </div>
+            <div class="product-info">
+              <span class="tag">Apple</span>
+              <h3>iPhone 16 Pro</h3>
+              <p>Compact Pro experience with premium finish and pro camera system.</p>
+              <div class="price-row">
+                <div class="price">
+                  <small>Starting from</small>
+                  <strong>AED 3,699</strong>
+                </div>
+                <a class="mini-link" href="https://wa.me/971500000000" target="_blank">Enquire →</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- PRODUCT 3 -->
+          <article class="product-card">
+            <div class="product-image">
+              <img src="images/samsung-s25-ultra.png" alt="Samsung Galaxy S25 Ultra">
+            </div>
+            <div class="product-info">
+              <span class="tag">Samsung</span>
+              <h3>Galaxy S25 Ultra</h3>
+              <p>Ultra-premium Galaxy performance with intelligent camera features.</p>
+              <div class="price-row">
+                <div class="price">
+                  <small>Starting from</small>
+                  <strong>AED 3,799</strong>
+                </div>
+                <a class="mini-link" href="https://wa.me/971500000000" target="_blank">Enquire →</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- PRODUCT 4 -->
+          <article class="product-card">
+            <div class="product-image">
+              <img src="images/airpods-pro.png" alt="AirPods Pro">
+            </div>
+            <div class="product-info">
+              <span class="tag">Accessories</span>
+              <h3>AirPods Pro</h3>
+              <p>Premium wireless audio, compact design and all-day convenience.</p>
+              <div class="price-row">
+                <div class="price">
+                  <small>Starting from</small>
+                  <strong>AED 799</strong>
+                </div>
+                <a class="mini-link" href="https://wa.me/971500000000" target="_blank">Enquire →</a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="why" id="about">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-title">
+            <small>Why Zamir Shabir Mobile Phone and Computer Trading</small>
+            <h2>A Better Mobile Shopping Experience.</h2>
+          </div>
+          <p>
+            A clean, trusted and customer-focused mobile shopping experience
+            for residents, visitors and businesses in Dubai.
+          </p>
+        </div>
+
+        <div class="feature-grid">
+          <div class="feature">
+            <div class="feature-icon">✦</div>
+            <h3>Premium Selection</h3>
+            <p>Popular flagship smartphones and accessories from leading global brands.</p>
+          </div>
+
+          <div class="feature">
+            <div class="feature-icon">✓</div>
+            <h3>Trusted Service</h3>
+            <p>Clear product information, helpful guidance and customer-first service.</p>
+          </div>
+
+          <div class="feature">
+            <div class="feature-icon">⚡</div>
+            <h3>Quick Enquiry</h3>
+            <p>Contact the shop directly through WhatsApp for availability and pricing.</p>
+          </div>
+
+          <div class="feature">
+            <div class="feature-icon">⌖</div>
+            <h3>Bur Dubai</h3>
+            <p>Conveniently located in one of Dubai's most active shopping districts.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="brands">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-title">
+            <small>Shop By Brand</small>
+            <h2>Your Favourite Brands.</h2>
+          </div>
+        </div>
+
+        <div class="brand-strip">
+          <div class="brand">APPLE</div>
+          <div class="brand">SAMSUNG</div>
+          <div class="brand">GOOGLE</div>
+          <div class="brand">XIAOMI</div>
+          <div class="brand">HONOR</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="location" id="location">
+      <div class="container">
+        <!-- Replace images/store.jpg with your shop image -->
+        <div class="location-card">
+          <div class="location-content">
+            <div class="eyebrow">Visit Our Store</div>
+            <h2>In the Heart of Bur Dubai.</h2>
+            <p>
+              Zamir Shabir Mobile Phone and Computer Trading<br>
+              Bur Dubai, Dubai, United Arab Emirates<br><br>
+              Add your complete shop address, opening hours and landmark here.
+            </p>
+
+            <!-- REPLACE GOOGLE MAP LINK -->
+            <a class="primary-btn" href="https://maps.google.com/" target="_blank">Get Directions →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <a class="logo" href="#home">
+            <div class="logo-mark">ZS</div>
+            <div class="logo-text">
+              <strong>Zamir Shabir Mobile Phone and Computer Trading</strong>
+              <span>Bur Dubai</span>
+            </div>
+          </a>
+          <p>
+            Premium mobile phones and accessories with friendly service
+            in Bur Dubai, Dubai.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <a href="#home">Home</a>
+          <a href="#products">Mobiles</a>
+          <a href="#brands">Brands</a>
+          <a href="#location">Location</a>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <a href="tel:+971500000000">+971 50 000 0000</a>
+          <a href="https://wa.me/971500000000" target="_blank">WhatsApp</a>
+          <a href="#">Instagram</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© <span id="year"></span> Zamir Shabir Mobile Phone and Computer Trading. All rights reserved.</span>
+        <span>Bur Dubai • Dubai • UAE</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- CHANGE YOUR WHATSAPP NUMBER -->
+  <a class="whatsapp-float" href="https://wa.me/971500000000" target="_blank" aria-label="WhatsApp">WA</a>
+
+  <script>
+    // HERO SLIDESHOW
+    const slides = document.querySelectorAll(".slide");
+    const dots = document.querySelectorAll(".dot");
+    let currentSlide = 0;
+    let sliderTimer;
+
+    function showSlide(index){
+      slides.forEach((slide, i) => {
+        slide.classList.toggle("active", i === index);
+        dots[i].classList.toggle("active", i === index);
+      });
+      currentSlide = index;
+    }
+
+    function nextSlide(){
+      showSlide((currentSlide + 1) % slides.length);
+    }
+
+    function startSlider(){
+      sliderTimer = setInterval(nextSlide, 5000);
+    }
+
+    dots.forEach((dot, index) => {
+      dot.addEventListener("click", () => {
+        clearInterval(sliderTimer);
+        showSlide(index);
+        startSlider();
+      });
+    });
+
+    startSlider();
+
+    // MOBILE MENU
+    const menuBtn = document.getElementById("menuBtn");
+    const mainNav = document.getElementById("mainNav");
+
+    menuBtn.addEventListener("click", () => {
+      mainNav.classList.toggle("open");
+    });
+
+    mainNav.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => mainNav.classList.remove("open"));
+    });
+
+    // COPYRIGHT YEAR
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
