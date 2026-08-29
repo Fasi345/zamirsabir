@@ -170,37 +170,18 @@
       font-size:20px;
     }
 
-    /* HERO SLIDER */
+    /* STATIC HERO */
     .hero{
       min-height:760px;
       position:relative;
       display:flex;
       align-items:center;
       overflow:hidden;
-      background:#050505;
+      background:
+        linear-gradient(90deg,rgba(0,0,0,.86) 0%,rgba(0,0,0,.61) 42%,rgba(0,0,0,.23) 70%,rgba(0,0,0,.42) 100%),
+        linear-gradient(0deg,rgba(8,8,8,.88) 0%,transparent 35%),
+        url('images/hero.jpg') center/cover no-repeat;
     }
-
-    .slide{
-      position:absolute;
-      inset:0;
-      opacity:0;
-      visibility:hidden;
-      transform:scale(1.04);
-      transition:opacity .9s ease,visibility .9s ease,transform 5s ease;
-      background-size:cover;
-      background-position:center;
-    }
-
-    .slide.active{
-      opacity:1;
-      visibility:visible;
-      transform:scale(1);
-    }
-
-    /* Replace these image filenames with your own images */
-    .slide-1{background-image:url('images/slide-1.jpg')}
-    .slide-2{background-image:url('images/slide-2.jpg')}
-    .slide-3{background-image:url('images/slide-3.jpg')}
 
     .hero-overlay{
       position:absolute;
@@ -565,6 +546,39 @@
       max-width:510px;
     }
 
+
+    /* PROMOTIONAL BANNER */
+    .promo-banner-section{
+      padding:30px 0 100px;
+      background:var(--bg);
+    }
+
+    .promo-banner{
+      width:100%;
+      aspect-ratio:1920 / 700;
+      border-radius:28px;
+      overflow:hidden;
+      border:1px solid rgba(214,173,96,.18);
+      background:#101010;
+      box-shadow:var(--shadow);
+    }
+
+    .promo-banner img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    @media(max-width:680px){
+      .promo-banner{
+        border-radius:18px;
+        aspect-ratio:16 / 9;
+      }
+      .promo-banner img{
+        object-fit:cover;
+      }
+    }
+
     footer{
       padding:55px 0 28px;
       border-top:1px solid rgba(255,255,255,.07);
@@ -715,20 +729,6 @@
 
   <main>
     <section class="hero" id="home">
-
-      <!--
-        HERO SLIDES:
-        Put your images inside a folder called "images".
-        Use these filenames:
-        slide-1.jpg
-        slide-2.jpg
-        slide-3.jpg
-
-        Or change the image paths in the CSS near .slide-1, .slide-2, .slide-3
-      -->
-      <div class="slide slide-1 active"></div>
-      <div class="slide slide-2"></div>
-      <div class="slide slide-3"></div>
       <div class="hero-overlay"></div>
 
       <div class="container hero-content">
@@ -761,12 +761,6 @@
               <strong>Top</strong>
               <span>Mobile Brands</span>
             </div>
-          </div>
-
-          <div class="dots">
-            <button class="dot active" data-slide="0" aria-label="Slide 1"></button>
-            <button class="dot" data-slide="1" aria-label="Slide 2"></button>
-            <button class="dot" data-slide="2" aria-label="Slide 3"></button>
           </div>
         </div>
       </div>
@@ -948,6 +942,23 @@
     </section>
   </main>
 
+
+    <section class="promo-banner-section">
+      <div class="container">
+        <!--
+          DESIGN YOUR BANNER AT 1920 × 700 PX.
+          Save it as: images/promo-banner.jpg
+
+          Important:
+          Keep key products/text away from the outer edges
+          because mobile screens may crop the sides slightly.
+        -->
+        <div class="promo-banner">
+          <img src="images/promo-banner.jpg" alt="Zamir Shabir Mobile Phone and Computer Trading promotional banner">
+        </div>
+      </div>
+    </section>
+
   <footer>
     <div class="container">
       <div class="footer-grid">
@@ -992,34 +1003,7 @@
   <a class="whatsapp-float" href="https://wa.me/971500000000" target="_blank" aria-label="WhatsApp">WA</a>
 
   <script>
-    // HERO SLIDESHOW
-    const slides = document.querySelectorAll(".slide");
-    const dots = document.querySelectorAll(".dot");
-    let currentSlide = 0;
-    let sliderTimer;
-
-    function showSlide(index){
-      slides.forEach((slide, i) => {
-        slide.classList.toggle("active", i === index);
-        dots[i].classList.toggle("active", i === index);
-      });
-      currentSlide = index;
-    }
-
-    function nextSlide(){
-      showSlide((currentSlide + 1) % slides.length);
-    }
-
-    function startSlider(){
-      sliderTimer = setInterval(nextSlide, 5000);
-    }
-
-    dots.forEach((dot, index) => {
-      dot.addEventListener("click", () => {
-        clearInterval(sliderTimer);
-        showSlide(index);
-        startSlider();
-      });
+});
     });
 
     startSlider();
